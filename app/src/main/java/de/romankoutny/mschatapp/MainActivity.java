@@ -17,8 +17,8 @@ import de.romankoutny.mschatapp.rest.RestCaller;
 
 public class MainActivity extends AppCompatActivity
 {
-    private ChatAdapter adapter;
-    private int msgCounter = 0;
+    public ChatAdapter adapter;
+    public int msgCounter = 0;
 
     @BindView(R.id.recyclerView)    RecyclerView chatList;
     @BindView(R.id.editText)    EditText messageText;
@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity
     @OnClick(R.id.button)
     void messageSend()
     {
-        String msg = messageText.getText().toString();
+        String question = messageText.getText().toString();
 
-        adapter.add(msgCounter++, msg);
+        adapter.add(msgCounter++, question);
 
         messageText.setText("");
         View view = this.getCurrentFocus();
@@ -61,9 +61,8 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-        String question = "Die App beendet sich";
-        String input = "{\"question\": \"" + question + "\"}";
+        //String input = "{\"question\": \"" + question + "\"}";
 
-        new RestCaller().call(input);
+        new RestCaller().call(question, this);
     }
 }
